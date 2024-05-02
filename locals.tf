@@ -21,6 +21,7 @@ locals {
       subnets = {
         private_mgmt     = "10.17.10.0/24"
         private_database = "10.17.100.0/24"
+        public_database  = "10.17.200.0/24"
       }
     }
     ip_address = {

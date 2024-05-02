@@ -14,6 +14,28 @@ resource "oci_core_vcn" "database" {
   freeform_tags = local.tags.defaults
 }
 
+# Create a public subnet for the database computes
+resource "oci_core_subnet" "public_database" {
+
+  compartment_id = local.values.compartments.production
+
+  cidr_block = local.networking.cidr.subnets.public_database
+  vcn_id     = oci_core_vcn.database.id
+
+  display_name               = "public-database"
+  dns_label                  = "publicdatabase"
+  prohibit_public_ip_on_vnic = true
+  security_list_ids          = [oci_core_default_security_list.default.id]
+
+  route_table_id = oci_core_default_route_table.default.id
+
+  freeform_tags = local.tags.defaults
+
+  depends_on = [
+    oci_core_vcn.database
+  ]
+}
+
 # Create a private subnet for the database computes
 resource "oci_core_subnet" "private_database" {
 
