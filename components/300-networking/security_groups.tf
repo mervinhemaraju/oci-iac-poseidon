@@ -8,7 +8,7 @@ resource "oci_core_security_list" "private_mgmt" {
   ingress_security_rules {
     # Allows SSH traffic from the internet
 
-    source      = local.networking.cidr.vcn.web
+    source      = local.networking.cidr.vcn.mgmt
     source_type = "CIDR_BLOCK"
     protocol    = 6 # TCP
 
