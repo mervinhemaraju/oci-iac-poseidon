@@ -8,11 +8,12 @@ locals {
       "Terraform"   = "Yes",
       "Project"     = "https://github.com/mervinhemaraju/oci-iac-poseidon",
       "Environment" = "Production"
+      "Component"   = "100-billing"
     }
   }
 
   values = {
-    compartment = {
+    compartments = {
       production = data.doppler_secrets.prod_main.map.OCI_POSEIDON_COMPARTMENT_PRODUCTION_ID
       root       = data.doppler_secrets.prod_main.map.OCI_POSEIDON_COMPARTMENT_ROOT_ID
     }
