@@ -26,29 +26,29 @@ resource "oci_core_route_table" "private_mgmt" {
   display_name = "route-table-private-mgmt"
 
 
-  #   dynamic "route_rules" {
-  #     for_each = data.oci_core_private_ips.mgmt_01.private_ips
-  #     content {
+  dynamic "route_rules" {
+    for_each = data.oci_core_private_ips.tool_server.private_ips
+    content {
 
-  #       network_entity_id = route_rules.value["id"]
+      network_entity_id = route_rules.value["id"]
 
-  #       description      = "Route to mgmt compute 01"
-  #       destination      = format("%s/32", route_rules.value["ip_address"])
-  #       destination_type = "CIDR_BLOCK"
-  #     }
-  #   }
+      description      = "Route to mgmt compute tool_server"
+      destination      = format("%s/32", route_rules.value["ip_address"])
+      destination_type = "CIDR_BLOCK"
+    }
+  }
 
-  #   dynamic "route_rules" {
-  #     for_each = data.oci_core_private_ips.mgmt_02.private_ips
-  #     content {
+  dynamic "route_rules" {
+    for_each = data.oci_core_private_ips.app_server.private_ips
+    content {
 
-  #       network_entity_id = route_rules.value["id"]
+      network_entity_id = route_rules.value["id"]
 
-  #       description      = "Route to mgmt compute 02"
-  #       destination      = format("%s/32", route_rules.value["ip_address"])
-  #       destination_type = "CIDR_BLOCK"
-  #     }
-  #   }
+      description      = "Route to mgmt compute app_server"
+      destination      = format("%s/32", route_rules.value["ip_address"])
+      destination_type = "CIDR_BLOCK"
+    }
+  }
 
   freeform_tags = local.tags.defaults
 }
