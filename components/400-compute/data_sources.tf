@@ -4,7 +4,7 @@ data "doppler_secrets" "prod_main" {}
 # Gets the availability domain from OCI
 data "oci_identity_availability_domain" "this" {
   compartment_id = local.values.compartments.production
-  ad_number      = 1
+  ad_number      = 2
 }
 
 data "oci_core_vcns" "mgmt" {
