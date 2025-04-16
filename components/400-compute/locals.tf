@@ -46,8 +46,8 @@ locals {
         automation_server = "automation-server"
       }
 
-      shape = "VM.Standard.E2.1.Micro"
-      image = "ocid1.image.oc1.uk-london-1.aaaaaaaaztt4hboqemt4duojchd2uibe2tyeb5zmdax7kqs2uegtv3mpbn2q"
+      shape = "VM.Standard.A1.Flex"
+      image = "ocid1.image.oc1.uk-london-1.aaaaaaaaddsnxqcnjih3csusa2ixtq3wbhl3qdonmhbdtm7lffiindovy2kq"
 
       plugins_config = [
         {

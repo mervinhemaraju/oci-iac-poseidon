@@ -12,7 +12,7 @@ resource "oci_core_instance" "automation_server" {
   shape = local.values.compute.shape
 
   shape_config {
-    memory_in_gbs = 1
+    memory_in_gbs = 8
     ocpus         = 1
     vcpus         = 1
   }
@@ -27,7 +27,7 @@ resource "oci_core_instance" "automation_server" {
   source_details {
     source_type             = "image"
     source_id               = local.values.compute.image
-    boot_volume_size_in_gbs = "80"
+    boot_volume_size_in_gbs = "60"
     boot_volume_vpus_per_gb = 120
   }
 
@@ -60,7 +60,7 @@ resource "oci_core_instance" "tool_server" {
   shape = local.values.compute.shape
 
   shape_config {
-    memory_in_gbs = 1
+    memory_in_gbs = 8
     ocpus         = 1
     vcpus         = 1
   }
@@ -108,9 +108,9 @@ resource "oci_core_instance" "app_server" {
   shape = local.values.compute.shape
 
   shape_config {
-    memory_in_gbs = 1
-    ocpus         = 1
-    vcpus         = 1
+    memory_in_gbs = 8
+    ocpus         = 2
+    vcpus         = 2
   }
 
   create_vnic_details {
@@ -123,7 +123,7 @@ resource "oci_core_instance" "app_server" {
   source_details {
     source_type             = "image"
     source_id               = local.values.compute.image
-    boot_volume_size_in_gbs = "60"
+    boot_volume_size_in_gbs = "80"
     boot_volume_vpus_per_gb = 120
   }
 
