@@ -14,8 +14,9 @@ locals {
 
   networking = {
     ip_address = {
-      tool_server = "10.15.20.10"
-      app_server  = "10.15.20.20"
+      tool_server       = "10.15.20.10"
+      app_server        = "10.15.20.20"
+      automation_server = "10.15.20.30"
     }
   }
 
@@ -40,11 +41,12 @@ locals {
     compute = {
 
       name = {
-        tool_server = "tool-server"
-        app_server  = "app-server"
+        tool_server       = "tool-server"
+        app_server        = "app-server"
+        automation_server = "automation-server"
       }
 
-      shape = "VM.Standard.E4.Flex"
+      shape = "VM.Standard.E2.1.Micro"
       image = "ocid1.image.oc1.uk-london-1.aaaaaaaaztt4hboqemt4duojchd2uibe2tyeb5zmdax7kqs2uegtv3mpbn2q"
 
       plugins_config = [
