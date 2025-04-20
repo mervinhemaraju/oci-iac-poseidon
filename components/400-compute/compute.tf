@@ -12,7 +12,7 @@ resource "oci_core_instance" "tool_server" {
   shape_config {
     memory_in_gbs = 1
     ocpus         = 1
-    vcpus         = 1
+    vcpus         = 2
   }
 
   create_vnic_details {
@@ -60,7 +60,7 @@ resource "oci_core_instance" "app_server" {
   shape_config {
     memory_in_gbs = 1
     ocpus         = 1
-    vcpus         = 1
+    vcpus         = 2
   }
 
   create_vnic_details {

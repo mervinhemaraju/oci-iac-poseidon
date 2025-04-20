@@ -8,7 +8,7 @@ resource "oci_core_security_list" "private_mgmt" {
   ingress_security_rules {
     # Allows SSH traffic from the internet
 
-    source      = local.networking.cidr.vcn.mgmt
+    source      = "0.0.0.0/0"
     source_type = "CIDR_BLOCK"
     protocol    = 6 # TCP
 
@@ -26,7 +26,7 @@ resource "oci_core_security_list" "private_mgmt" {
     destination_type = "CIDR_BLOCK"
     protocol         = "all"
 
-    description = "Allows all outbound traffic to the private-mgmt subnet."
+    description = "Allows all outbound traffic to the public-mgmt subnet."
 
   }
 
@@ -52,11 +52,11 @@ resource "oci_core_security_list" "public_mgmt" {
 
   ingress_security_rules {
 
-    source      = local.networking.cidr.vcn.mgmt
+    source      = local.networking.cidr.subnets.private_mgmt
     source_type = "CIDR_BLOCK"
     protocol    = "all"
 
-    description = "Allow all traffic for the mgmt vcn's cidr block."
+    description = "Allow all traffic from the private mgmt subnet."
   }
 
   #   ingress_security_rules {
