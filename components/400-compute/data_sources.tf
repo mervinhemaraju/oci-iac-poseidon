@@ -4,7 +4,7 @@ data "doppler_secrets" "prod_main" {}
 # Gets the availability domain from OCI
 data "oci_identity_availability_domain" "this" {
   compartment_id = local.values.compartments.production
-  ad_number      = 2
+  ad_number      = 1
 }
 
 data "oci_core_vcns" "mgmt" {
@@ -13,9 +13,9 @@ data "oci_core_vcns" "mgmt" {
   display_name = "mgmt"
 }
 
-data "oci_core_subnets" "public_mgmt" {
+data "oci_core_subnets" "private_k8" {
   compartment_id = local.values.compartments.production
-  display_name   = "public-mgmt"
+  display_name   = "private-k8"
   vcn_id         = data.oci_core_vcns.mgmt.virtual_networks[0].id
 }
 

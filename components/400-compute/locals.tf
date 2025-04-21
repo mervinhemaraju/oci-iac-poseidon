@@ -45,7 +45,15 @@ locals {
       shape = "VM.Standard.A1.Flex"
       image = "ocid1.image.oc1.uk-london-1.aaaaaaaasyryy6yl64a6sd4535q4uqyhueuaxfevvig3hp3357vslx3qev7q"
 
-      worker_nodes = [
+      k8_nodes = [
+        {
+          name       = "control_plane"
+          ip_address = "10.15.20.20"
+          memory     = 6
+          ocpus      = 2
+          vcpus      = 2
+          storage    = 50
+        },
         {
           name       = "worker-node-01"
           ip_address = "10.15.20.21"
