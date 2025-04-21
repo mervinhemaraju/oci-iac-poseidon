@@ -17,16 +17,16 @@ resource "oci_core_security_list" "private_mgmt" {
       max = 22
     }
 
-    description = "Allow SSH traffic from the internet to the mgmt VCN CIDR."
+    description = "Allow SSH traffic from the Internet."
   }
 
   egress_security_rules {
 
-    destination      = local.networking.cidr.subnets.private_k8
+    destination      = local.networking.cidr.vcn.mgmt
     destination_type = "CIDR_BLOCK"
     protocol         = "all"
 
-    description = "Allows all outbound traffic to the private-k8 subnet."
+    description = "Allows all outbound traffic to the VCN CIDR."
 
   }
 
@@ -40,14 +40,19 @@ resource "oci_core_security_list" "private_k8" {
 
   display_name = "private-k8-sl"
 
-  egress_security_rules {
+  ingress_security_rules {
+    # Allows SSH traffic from the internet
 
-    destination      = "0.0.0.0/0"
-    destination_type = "CIDR_BLOCK"
-    protocol         = "all"
+    source      = "0.0.0.0/0"
+    source_type = "CIDR_BLOCK"
+    protocol    = 6 # TCP
 
-    description = "Allow all outbound traffic to the internet."
+    tcp_options {
+      min = 22
+      max = 22
+    }
 
+    description = "Allow SSH traffic from the Internet."
   }
 
   ingress_security_rules {
@@ -56,7 +61,17 @@ resource "oci_core_security_list" "private_k8" {
     source_type = "CIDR_BLOCK"
     protocol    = "all"
 
-    description = "Allow all traffic from the private mgmt subnet."
+    description = "Allow all traffic from the VCN CIDR"
+  }
+
+  egress_security_rules {
+
+    destination      = "0.0.0.0/0"
+    destination_type = "CIDR_BLOCK"
+    protocol         = "all"
+
+    description = "Allow all outbound traffic to the internet."
+
   }
 
   freeform_tags = local.tags.defaults
