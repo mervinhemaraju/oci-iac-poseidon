@@ -14,7 +14,7 @@ resource "oci_core_instance" "k8_nodes" {
   shape_config {
     memory_in_gbs = each.value.memory
     ocpus         = each.value.ocpus
-    vcpus         = each.value.vcpus
+    # vcpus         = each.value.vcpus
   }
 
   create_vnic_details {
