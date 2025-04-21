@@ -41,21 +41,6 @@ resource "oci_core_security_list" "private_k8" {
   display_name = "private-k8-sl"
 
   ingress_security_rules {
-    # Allows SSH traffic from the internet
-
-    source      = "0.0.0.0/0"
-    source_type = "CIDR_BLOCK"
-    protocol    = 6 # TCP
-
-    tcp_options {
-      min = 22
-      max = 22
-    }
-
-    description = "Allow SSH traffic from the Internet."
-  }
-
-  ingress_security_rules {
 
     source      = local.networking.cidr.subnets.private_mgmt
     source_type = "CIDR_BLOCK"
