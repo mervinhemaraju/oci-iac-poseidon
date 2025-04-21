@@ -12,12 +12,6 @@ locals {
     }
   }
 
-  networking = {
-    ip_address = {
-      control_plane = "10.15.20.20"
-    }
-  }
-
   values = {
 
     compartments = {
@@ -45,8 +39,9 @@ locals {
       shape = "VM.Standard.A1.Flex"
       image = "ocid1.image.oc1.uk-london-1.aaaaaaaasyryy6yl64a6sd4535q4uqyhueuaxfevvig3hp3357vslx3qev7q"
 
-      k8_nodes = [
-        {
+      k8_nodes = {
+
+        control_plane = {
           name       = "control_plane"
           ip_address = "10.15.20.20"
           memory     = 6
@@ -54,7 +49,7 @@ locals {
           vcpus      = 2
           storage    = 50
         },
-        {
+        worker_node_01 = {
           name       = "worker-node-01"
           ip_address = "10.15.20.21"
           memory     = 9
@@ -62,7 +57,7 @@ locals {
           vcpus      = 2
           storage    = 75
         },
-        {
+        worker_node_02 = {
           name       = "worker-node-02"
           ip_address = "10.15.20.22"
           memory     = 9
@@ -70,7 +65,7 @@ locals {
           vcpus      = 2
           storage    = 75
         },
-      ]
+      }
 
       plugins_config = [
         {
