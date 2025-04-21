@@ -14,9 +14,7 @@ locals {
 
   networking = {
     ip_address = {
-      tool_server       = "10.15.20.10"
-      app_server        = "10.15.20.20"
-      automation_server = "10.15.20.30"
+      control_plane = "10.15.20.20"
     }
   }
 
@@ -41,13 +39,30 @@ locals {
     compute = {
 
       name = {
-        tool_server       = "tool-server"
-        app_server        = "app-server"
-        automation_server = "automation-server"
+        control_plane = "control-plane"
       }
 
-      shape = "VM.Standard.E2.1.Micro"
-      image = "ocid1.image.oc1.uk-london-1.aaaaaaaa4qodfcrqcqhwsbo5obuisyiu6mnicjp67gm7ukzrbbackdicx33q"
+      shape = "VM.Standard.A1.Flex"
+      image = "ocid1.image.oc1.uk-london-1.aaaaaaaasyryy6yl64a6sd4535q4uqyhueuaxfevvig3hp3357vslx3qev7q"
+
+      worker_nodes = [
+        {
+          name       = "worker-node-01"
+          ip_address = "10.15.20.21"
+          memory     = 9
+          ocpus      = 1
+          vcpus      = 2
+          storage    = 75
+        },
+        {
+          name       = "worker-node-02"
+          ip_address = "10.15.20.22"
+          memory     = 9
+          ocpus      = 1
+          vcpus      = 2
+          storage    = 75
+        },
+      ]
 
       plugins_config = [
         {

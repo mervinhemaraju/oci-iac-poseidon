@@ -31,7 +31,7 @@ locals {
       }
       subnets = {
         private_mgmt = "10.15.10.0/24"
-        public_mgmt  = "10.15.20.0/24"
+        private_k8   = "10.15.20.0/24"
       }
     }
   }

@@ -33,12 +33,12 @@ resource "oci_core_security_list" "private_mgmt" {
   freeform_tags = local.tags.defaults
 }
 
-resource "oci_core_security_list" "public_mgmt" {
+resource "oci_core_security_list" "private_k8" {
 
   compartment_id = local.values.compartments.production
   vcn_id         = oci_core_vcn.mgmt.id
 
-  display_name = "public-mgmt-sl"
+  display_name = "private-k8-sl"
 
   egress_security_rules {
 
@@ -58,34 +58,6 @@ resource "oci_core_security_list" "public_mgmt" {
 
     description = "Allow all traffic from the private mgmt subnet."
   }
-
-  #   ingress_security_rules {
-
-  #     source      = "0.0.0.0/0"
-  #     source_type = "CIDR_BLOCK"
-  #     protocol    = 6 #* TCP protocol code
-
-  #     description = "Allow Inbound HTTP Traffic from the Internet"
-
-  #     tcp_options {
-  #       max = 80
-  #       min = 80
-  #     }
-  #   }
-
-  #   ingress_security_rules {
-
-  #     source      = "0.0.0.0/0"
-  #     source_type = "CIDR_BLOCK"
-  #     protocol    = 6 #* TCP protocol code
-
-  #     description = "Allow Inbound HTTPS Traffic from the Internet"
-
-  #     tcp_options {
-  #       max = 443
-  #       min = 443
-  #     }
-  #   }
 
   freeform_tags = local.tags.defaults
 }

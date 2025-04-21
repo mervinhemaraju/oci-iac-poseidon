@@ -1,36 +1,13 @@
-# Creates a zero spend budget
-resource "oci_budget_budget" "oci_zero_spend_budget" {
+# Creates a minimal spend budget
+resource "oci_budget_budget" "minimal_spend" {
   compartment_id = local.values.compartments.root
-  amount         = 1
+  amount         = 3
   reset_period   = "MONTHLY"
 
-  description  = "A zero spend budget for OCI"
-  display_name = "zero-spend-budget"
+  description  = "A minimal spend budget for OCI Poseidon"
+  display_name = "budget-minimal-spend"
   target_type  = "COMPARTMENT"
   targets = [
     local.values.compartments.production
-  ]
-
-  freeform_tags = local.tags.defaults
-}
-
-resource "oci_budget_alert_rule" "oci_zsb_rule" {
-  budget_id      = oci_budget_budget.oci_zero_spend_budget.id
-  threshold      = 0.1
-  threshold_type = "ABSOLUTE"
-  type           = "ACTUAL"
-
-  display_name = "0-strict-threshold"
-  message      = <<EOF
-  Minimum alert for the zero spend budget has been trigerred. 
-  You have already spent 1 USD in the OCI Poseidon Account.
-  Please take action ASAP if this was not intended.
-  EOF
-  recipients   = "mervinhemaraju16@gmail.com"
-
-  freeform_tags = local.tags.defaults
-
-  depends_on = [
-    oci_budget_budget.oci_zero_spend_budget
   ]
 }

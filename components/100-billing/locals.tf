@@ -17,5 +17,9 @@ locals {
       production = data.doppler_secrets.prod_main.map.OCI_POSEIDON_COMPARTMENT_PRODUCTION_ID
       root       = data.doppler_secrets.prod_main.map.OCI_POSEIDON_COMPARTMENT_ROOT_ID
     }
+
+    alerts = {
+      main_email_recipient = "mervinhemaraju16@gmail.com"
+    }
   }
 }
