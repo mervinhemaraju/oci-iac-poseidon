@@ -42,7 +42,7 @@ locals {
       k8_nodes = {
 
         control_plane = {
-          name       = "control_plane"
+          name       = "control-plane"
           ip_address = "10.15.20.20"
           # ip_address = "10.15.30.20"
           memory = 6
