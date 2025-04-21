@@ -49,6 +49,15 @@ resource "oci_core_security_list" "private_k8" {
     description = "Allow all traffic from the VCN CIDR"
   }
 
+  ingress_security_rules {
+
+    source      = local.networking.cidr.subnets.private_k8
+    source_type = "CIDR_BLOCK"
+    protocol    = "all"
+
+    description = "Allow all traffic from the private-k8 CIDR"
+  }
+
   egress_security_rules {
 
     destination      = "0.0.0.0/0"
