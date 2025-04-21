@@ -42,24 +42,27 @@ locals {
       k8_nodes = {
 
         control_plane = {
-          name       = "control_plane"
-          ip_address = "10.15.20.20"
+          name = "control_plane"
+          # ip_address = "10.15.20.20"
+          ip_address = "10.15.30.20"
           memory     = 6
           ocpus      = 2
           vcpus      = 2
           storage    = 50
         },
         worker_node_01 = {
-          name       = "worker-node-01"
-          ip_address = "10.15.20.21"
+          name = "worker-node-01"
+          # ip_address = "10.15.20.21"
+          ip_address = "10.15.30.21"
           memory     = 9
           ocpus      = 1
           vcpus      = 2
           storage    = 75
         },
         worker_node_02 = {
-          name       = "worker-node-02"
-          ip_address = "10.15.20.22"
+          name = "worker-node-02"
+          # ip_address = "10.15.20.22"
+          ip_address = "10.15.30.22"
           memory     = 9
           ocpus      = 1
           vcpus      = 2
