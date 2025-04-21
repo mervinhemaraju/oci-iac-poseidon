@@ -22,11 +22,11 @@ resource "oci_core_security_list" "private_mgmt" {
 
   egress_security_rules {
 
-    destination      = local.networking.cidr.subnets.public_mgmt
+    destination      = local.networking.cidr.subnets.private_k8
     destination_type = "CIDR_BLOCK"
     protocol         = "all"
 
-    description = "Allows all outbound traffic to the public-mgmt subnet."
+    description = "Allows all outbound traffic to the private-k8 subnet."
 
   }
 
