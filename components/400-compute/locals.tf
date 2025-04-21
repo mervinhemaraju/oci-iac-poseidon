@@ -37,34 +37,34 @@ locals {
       }
 
       shape = "VM.Standard.A1.Flex"
-      image = "ocid1.image.oc1.uk-london-1.aaaaaaaasyryy6yl64a6sd4535q4uqyhueuaxfevvig3hp3357vslx3qev7q"
+      image = "ocid1.image.oc1.uk-london-1.aaaaaaaaskspfz56rlcmtfbr2milotcxqcpitly63zipmn4joygm44qs7hua"
 
       k8_nodes = {
 
         control_plane = {
-          name = "control_plane"
-          # ip_address = "10.15.20.20"
-          ip_address = "10.15.30.20"
-          memory     = 6
-          ocpus      = 2
+          name       = "control_plane"
+          ip_address = "10.15.20.20"
+          # ip_address = "10.15.30.20"
+          memory = 6
+          ocpus  = 2
           # vcpus      = 2
           storage = 50
         },
         worker_node_01 = {
-          name = "worker-node-01"
-          # ip_address = "10.15.20.21"
-          ip_address = "10.15.30.21"
-          memory     = 9
-          ocpus      = 1
+          name       = "worker-node-01"
+          ip_address = "10.15.20.21"
+          # ip_address = "10.15.30.21"
+          memory = 9
+          ocpus  = 1
           # vcpus      = 2
           storage = 75
         },
         worker_node_02 = {
-          name = "worker-node-02"
-          # ip_address = "10.15.20.22"
-          ip_address = "10.15.30.22"
-          memory     = 9
-          ocpus      = 1
+          name       = "worker-node-02"
+          ip_address = "10.15.20.22"
+          # ip_address = "10.15.30.22"
+          memory = 9
+          ocpus  = 1
           # vcpus      = 2
           storage = 75
         },
