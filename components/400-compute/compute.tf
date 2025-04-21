@@ -18,8 +18,8 @@ resource "oci_core_instance" "k8_nodes" {
   }
 
   create_vnic_details {
-    subnet_id              = data.oci_core_subnets.private_k8.subnets[0].id
-    assign_public_ip       = false
+    subnet_id              = data.oci_core_subnets.public_k8.subnets[0].id
+    assign_public_ip       = true
     private_ip             = each.value.ip_address
     skip_source_dest_check = true
   }
