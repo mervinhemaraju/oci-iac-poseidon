@@ -9,6 +9,7 @@ resource "oci_identity_policy" "instance_principal" {
   name           = "instance-principal-policy"
   statements = [
     "allow dynamic-group ${local.values.groups.dynamic.instance_principal} to manage all-resources in tenancy",
+    "allow dynamic-group ${local.values.groups.dynamic.instance_principal} to manage object-family in tenancy"
   ]
 
   freeform_tags = local.tags.defaults
