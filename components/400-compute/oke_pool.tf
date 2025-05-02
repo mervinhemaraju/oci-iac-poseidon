@@ -26,15 +26,14 @@ resource "oci_containerengine_node_pool" "test_node_pool" {
 
     }
 
-    # node_pool_pod_network_option_details {
-    #   #Required
-    #   cni_type = var.node_pool_node_config_details_node_pool_pod_network_option_details_cni_type
+    node_pool_pod_network_option_details {
+      cni_type = "OCI_VCN_IP_NATIVE"
 
-    #   #Optional
-    #   max_pods_per_node = var.node_pool_node_config_details_node_pool_pod_network_option_details_max_pods_per_node
-    #   pod_nsg_ids       = var.node_pool_node_config_details_node_pool_pod_network_option_details_pod_nsg_ids
-    #   pod_subnet_ids    = var.node_pool_node_config_details_node_pool_pod_network_option_details_pod_subnet_ids
-    # }
+      #Optional
+      # max_pods_per_node = var.node_pool_node_config_details_node_pool_pod_network_option_details_max_pods_per_node
+      # pod_nsg_ids       = var.node_pool_node_config_details_node_pool_pod_network_option_details_pod_nsg_ids
+      # pod_subnet_ids    = var.node_pool_node_config_details_node_pool_pod_network_option_details_pod_subnet_ids
+    }
 
     freeform_tags = local.tags.defaults
   }
