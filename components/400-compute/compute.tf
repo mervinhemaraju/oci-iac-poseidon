@@ -1,5 +1,5 @@
 # Create compute instances for the K8 nodes
-resource "oci_core_instance" "k8_nodes" {
+resource "oci_core_instance" "nodes" {
 
   for_each = local.values.compute.k8_nodes
 
