@@ -70,3 +70,32 @@ resource "oci_core_security_list" "private_k8" {
 
   freeform_tags = local.tags.defaults
 }
+
+resource "oci_core_security_list" "private_tool" {
+
+  compartment_id = local.values.compartments.production
+  vcn_id         = oci_core_vcn.mgmt.id
+
+  display_name = "private-tool-sl"
+
+  ingress_security_rules {
+
+    source      = local.networking.cidr.subnets.private_mgmt
+    source_type = "CIDR_BLOCK"
+    protocol    = "all"
+
+    description = "Allow all traffic from the VCN CIDR"
+  }
+
+  egress_security_rules {
+
+    destination      = "0.0.0.0/0"
+    destination_type = "CIDR_BLOCK"
+    protocol         = "all"
+
+    description = "Allow all outbound traffic to the internet."
+
+  }
+
+  freeform_tags = local.tags.defaults
+}
