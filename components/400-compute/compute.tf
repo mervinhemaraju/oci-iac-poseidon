@@ -26,7 +26,7 @@ resource "oci_core_instance" "k8_nodes" {
 
   source_details {
     source_type             = "image"
-    source_id               = local.values.compute.image_oci9_minimal
+    source_id               = local.values.compute.image
     boot_volume_size_in_gbs = each.value.storage
     boot_volume_vpus_per_gb = 120
   }

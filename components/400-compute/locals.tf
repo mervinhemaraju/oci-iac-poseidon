@@ -36,9 +36,8 @@ locals {
         control_plane = "control-plane"
       }
 
-      shape              = "VM.Standard.A1.Flex"
-      image              = "ocid1.image.oc1.uk-london-1.aaaaaaaaskspfz56rlcmtfbr2milotcxqcpitly63zipmn4joygm44qs7hua"
-      image_oci9_minimal = "ocid1.image.oc1.uk-london-1.aaaaaaaaey2ifzwcnwrgrfn4elbbnskg7vnge5udbslcdvp6qq22dqo5bv3a"
+      shape = "VM.Standard.A1.Flex"
+      image = "ocid1.image.oc1.uk-london-1.aaaaaaaaskspfz56rlcmtfbr2milotcxqcpitly63zipmn4joygm44qs7hua"
 
       k8_nodes = {
         automation_server = {
@@ -46,8 +45,7 @@ locals {
           ip_address = "10.15.40.10"
           memory     = 6
           ocpus      = 2
-          # vcpus      = 2
-          storage = 40
+          storage    = 40
         }
       }
 
