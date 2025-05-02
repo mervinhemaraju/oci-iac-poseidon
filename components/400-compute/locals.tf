@@ -45,7 +45,7 @@ locals {
           ip_address = "10.15.40.10"
           memory     = 6
           ocpus      = 2
-          storage    = 40
+          storage    = 50
         }
       }
 
