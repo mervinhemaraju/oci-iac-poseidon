@@ -32,7 +32,7 @@ resource "oci_containerengine_node_pool" "test_node_pool" {
       #Optional
       # max_pods_per_node = var.node_pool_node_config_details_node_pool_pod_network_option_details_max_pods_per_node
       # pod_nsg_ids       = var.node_pool_node_config_details_node_pool_pod_network_option_details_pod_nsg_ids
-      # pod_subnet_ids    = var.node_pool_node_config_details_node_pool_pod_network_option_details_pod_subnet_ids
+      pod_subnet_ids = data.oci_core_subnets.private_k8.subnets[*].id
     }
 
     freeform_tags = local.tags.defaults
