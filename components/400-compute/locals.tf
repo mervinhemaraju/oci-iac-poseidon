@@ -36,19 +36,19 @@ locals {
         control_plane = "control-plane"
       }
 
-      shape = "VM.Standard.A1.Flex"
-      image = "ocid1.image.oc1.uk-london-1.aaaaaaaaskspfz56rlcmtfbr2milotcxqcpitly63zipmn4joygm44qs7hua"
+      shape              = "VM.Standard.A1.Flex"
+      image              = "ocid1.image.oc1.uk-london-1.aaaaaaaaskspfz56rlcmtfbr2milotcxqcpitly63zipmn4joygm44qs7hua"
+      image_oci9_minimal = "ocid1.image.oc1.uk-london-1.aaaaaaaaey2ifzwcnwrgrfn4elbbnskg7vnge5udbslcdvp6qq22dqo5bv3a"
 
       k8_nodes = {
-        # automation_server = {
-        #   name       = "automation-server"
-        #   ip_address = "10.15.20.20"
-        #   # ip_address = "10.15.30.20"
-        #   memory = 6
-        #   ocpus  = 2
-        #   # vcpus      = 2
-        #   storage = 50
-        # }
+        automation_server = {
+          name       = "automation-server"
+          ip_address = "10.15.40.10"
+          memory     = 6
+          ocpus      = 2
+          # vcpus      = 2
+          storage = 40
+        }
       }
 
       plugins_config = [

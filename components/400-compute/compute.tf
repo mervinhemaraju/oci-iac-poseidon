@@ -18,7 +18,7 @@ resource "oci_core_instance" "k8_nodes" {
   }
 
   create_vnic_details {
-    subnet_id              = data.oci_core_subnets.private_k8.subnets[0].id
+    subnet_id              = data.oci_core_subnets.private_tool.subnets[0].id
     assign_public_ip       = false
     private_ip             = each.value.ip_address
     skip_source_dest_check = true
@@ -26,7 +26,7 @@ resource "oci_core_instance" "k8_nodes" {
 
   source_details {
     source_type             = "image"
-    source_id               = local.values.compute.image
+    source_id               = local.values.compute.image_oci9_minimal
     boot_volume_size_in_gbs = each.value.storage
     boot_volume_vpus_per_gb = 120
   }
