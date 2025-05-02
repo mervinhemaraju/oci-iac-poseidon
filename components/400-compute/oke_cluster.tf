@@ -10,11 +10,9 @@ resource "oci_containerengine_cluster" "apps" {
   # kms_key_id = oci_kms_key.test_key.id
   # ip_families = var.cluster_options_ip_families
 
-  #   #Optional
-  #   cluster_pod_network_options {
-  #     #Required
-  #     cni_type = var.cluster_cluster_pod_network_options_cni_type
-  #   }
+  cluster_pod_network_options {
+    cni_type = "VCN_NATIVE"
+  }
 
   endpoint_config {
     is_public_ip_enabled = true
