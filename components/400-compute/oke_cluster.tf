@@ -11,7 +11,7 @@ resource "oci_containerengine_cluster" "apps" {
   # ip_families = var.cluster_options_ip_families
 
   cluster_pod_network_options {
-    cni_type = "VCN_NATIVE"
+    cni_type = "OCI_VCN_IP_NATIVE"
   }
 
   endpoint_config {
