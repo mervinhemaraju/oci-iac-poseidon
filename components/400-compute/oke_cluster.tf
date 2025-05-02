@@ -45,12 +45,12 @@ resource "oci_containerengine_cluster" "apps" {
       is_pod_security_policy_enabled = false
     }
 
-    kubernetes_network_config {
+    # kubernetes_network_config {
 
-      #Optional
-      pods_cidr     = "10.16.100.0/24"
-      services_cidr = "10.16.101.0/24"
-    }
+    #   #Optional
+    #   pods_cidr     = "10.16.100.0/24"
+    #   services_cidr = "10.16.101.0/24"
+    # }
 
     # open_id_connect_token_authentication_config {
     #   #Required
