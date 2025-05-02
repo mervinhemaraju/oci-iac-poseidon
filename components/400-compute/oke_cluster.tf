@@ -19,7 +19,7 @@ resource "oci_containerengine_cluster" "apps" {
   endpoint_config {
     is_public_ip_enabled = true
     # nsg_ids              = var.cluster_endpoint_config_nsg_ids
-    subnet_id = data.oci_core_subnet.public_k8.id
+    subnet_id = data.oci_core_subnets.public_k8.subnets[0].id
   }
 
   #   image_policy_config {
