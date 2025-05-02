@@ -4,7 +4,7 @@ resource "oci_containerengine_cluster" "apps" {
   kubernetes_version = "v1.32.1"
   name               = "applications"
   type               = "BASIC_CLUSTER"
-  vcn_id             = data.oci_core_vcns.mgmt.id
+  vcn_id             = data.oci_core_vcns.mgmt.virtual_networks[0].id
   # service_lb_subnet_ids = var.cluster_options_service_lb_subnet_ids
 
   # kms_key_id = oci_kms_key.test_key.id
