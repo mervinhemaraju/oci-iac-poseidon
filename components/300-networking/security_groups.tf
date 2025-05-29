@@ -71,6 +71,65 @@ resource "oci_core_security_list" "private_k8" {
   freeform_tags = local.tags.defaults
 }
 
+resource "oci_core_security_list" "public_k8" {
+
+  compartment_id = local.values.compartments.production
+  vcn_id         = oci_core_vcn.mgmt.id
+
+  display_name = "public-k8-sl"
+
+  ingress_security_rules {
+    # Allows K8 traffic from the internet
+
+    source      = "0.0.0.0/0"
+    source_type = "CIDR_BLOCK"
+    protocol    = 6 # TCP
+
+    tcp_options {
+      min = 6443
+      max = 6443
+    }
+  }
+
+  ingress_security_rules {
+    # Allows HTTPS traffic from the internet
+
+    source      = "0.0.0.0/0"
+    source_type = "CIDR_BLOCK"
+    protocol    = 6 # TCP
+
+    tcp_options {
+      min = 443
+      max = 443
+    }
+  }
+
+  ingress_security_rules {
+    # Allows HTTP traffic from the internet
+
+    source      = "0.0.0.0/0"
+    source_type = "CIDR_BLOCK"
+    protocol    = 6 # TCP
+
+    tcp_options {
+      min = 80
+      max = 80
+    }
+  }
+
+  egress_security_rules {
+
+    destination      = "0.0.0.0/0"
+    destination_type = "CIDR_BLOCK"
+    protocol         = "all"
+
+    description = "Allow all outbound traffic to the internet."
+
+  }
+
+  freeform_tags = local.tags.defaults
+}
+
 resource "oci_core_security_list" "private_tool" {
 
   compartment_id = local.values.compartments.production
