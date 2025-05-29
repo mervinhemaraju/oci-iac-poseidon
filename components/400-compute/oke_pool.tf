@@ -1,11 +1,9 @@
-resource "oci_containerengine_node_pool" "test_node_pool" {
+resource "oci_containerengine_node_pool" "apps" {
   cluster_id         = oci_containerengine_cluster.apps.id
   compartment_id     = local.values.compartments.production
-  name               = "apps-pool"
+  name               = "apps-node-pool"
   node_shape         = local.values.compute.shape
-  kubernetes_version = "v1.31.1"
-
-  #   quantity_per_subnet = var.node_pool_quantity_per_subnet
+  kubernetes_version = "v1.33.0"
   ssh_public_key = data.doppler_secrets.prod_main.map.OCI_POSEIDON_COMPUTE_KEY_PUBLIC
   #   subnet_ids          = var.node_pool_subnet_ids
 
@@ -59,7 +57,7 @@ resource "oci_containerengine_node_pool" "test_node_pool" {
   }
 
   node_source_details {
-    image_id    = "ocid1.image.oc1.uk-london-1.aaaaaaaaw5wosv5hcnsccntpobqcflm4viraldidrnlafrozu6q6izkswmma"
+    image_id    = local.values.compute.image_oke_node
     source_type = "IMAGE"
 
     boot_volume_size_in_gbs = 75

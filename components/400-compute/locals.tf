@@ -38,6 +38,7 @@ locals {
 
       shape = "VM.Standard.A1.Flex"
       image = "ocid1.image.oc1.uk-london-1.aaaaaaaaskspfz56rlcmtfbr2milotcxqcpitly63zipmn4joygm44qs7hua"
+      image_oke_node = "ocid1.image.oc1.uk-london-1.aaaaaaaaw5wosv5hcnsccntpobqcflm4viraldidrnlafrozu6q6izkswmma"
 
       k8_nodes = {
         automation_server = {
