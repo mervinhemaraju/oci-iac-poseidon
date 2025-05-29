@@ -1,11 +1,11 @@
 resource "oci_containerengine_cluster" "apps" {
   #Required
-  compartment_id     = local.values.compartments.production
-  kubernetes_version = "v1.33.0"
-  name               = "applications"
-  type               = "BASIC_CLUSTER"
-  vcn_id             = data.oci_core_vcns.mgmt.virtual_networks[0].id
-  # service_lb_subnet_ids = var.cluster_options_service_lb_subnet_ids
+  compartment_id        = local.values.compartments.production
+  kubernetes_version    = "v1.33.0"
+  name                  = "applications"
+  type                  = "BASIC_CLUSTER"
+  vcn_id                = data.oci_core_vcns.mgmt.virtual_networks[0].id
+  service_lb_subnet_ids = data.oci_core_subnets.public_k8.subnets[*].id
 
   # kms_key_id = oci_kms_key.test_key.id
   # ip_families = var.cluster_options_ip_families
