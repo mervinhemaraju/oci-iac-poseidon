@@ -1,7 +1,7 @@
 resource "oci_containerengine_cluster" "apps" {
   #Required
   compartment_id     = local.values.compartments.production
-  kubernetes_version = "v1.33.0"
+  kubernetes_version = "v1.32.1"
   name               = "applications"
   type               = "BASIC_CLUSTER"
   vcn_id             = data.oci_core_vcns.mgmt.virtual_networks[0].id
