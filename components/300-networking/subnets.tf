@@ -11,7 +11,7 @@ resource "oci_core_subnet" "public_k8" {
   display_name               = "public-k8"
   dns_label                  = "publick8"
   prohibit_public_ip_on_vnic = false
-  security_list_ids          = [oci_core_security_list.private_k8.id]
+  security_list_ids          = [oci_core_security_list.public_k8.id]
 
   route_table_id = oci_core_route_table.public_k8.id
 
