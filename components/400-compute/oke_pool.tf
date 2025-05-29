@@ -3,7 +3,7 @@ resource "oci_containerengine_node_pool" "apps" {
   compartment_id     = local.values.compartments.production
   name               = "apps-node-pool"
   node_shape         = local.values.compute.shape
-  kubernetes_version = "v1.31.1"
+  kubernetes_version = "v1.32.1"
   ssh_public_key     = data.doppler_secrets.prod_main.map.OCI_POSEIDON_COMPUTE_KEY_PUBLIC
   #   subnet_ids          = var.node_pool_subnet_ids
 

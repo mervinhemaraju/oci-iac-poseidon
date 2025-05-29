@@ -5,7 +5,6 @@ resource "oci_containerengine_cluster" "apps" {
   name               = "applications"
   type               = "BASIC_CLUSTER"
   vcn_id             = data.oci_core_vcns.mgmt.virtual_networks[0].id
-  # service_lb_subnet_ids = var.cluster_options_service_lb_subnet_ids
 
   # kms_key_id = oci_kms_key.test_key.id
   # ip_families = var.cluster_options_ip_families
@@ -33,6 +32,8 @@ resource "oci_containerengine_cluster" "apps" {
 
 
   options {
+
+    service_lb_subnet_ids = data.oci_core_subnets.public_k8.subnets[*].id
 
     add_ons {
       is_kubernetes_dashboard_enabled = true
