@@ -46,7 +46,7 @@ resource "oci_core_security_list" "private_k8" {
     source_type = "CIDR_BLOCK"
     protocol    = "all"
 
-    description = "Allow all traffic from the VCN CIDR"
+    description = "Allow all traffic from the MGMT Subnet"
   }
 
   ingress_security_rules {
@@ -55,7 +55,7 @@ resource "oci_core_security_list" "private_k8" {
     source_type = "CIDR_BLOCK"
     protocol    = "all"
 
-    description = "Allow all traffic from the private-k8 CIDR"
+    description = "Allow all traffic from the private-k8 subnet"
   }
 
   egress_security_rules {
@@ -117,6 +117,17 @@ resource "oci_core_security_list" "public_k8" {
     }
   }
 
+  ingress_security_rules {
+
+    # Alows all traffic from the VCN CIDR
+
+    source      = local.networking.cidr.vcn.mgmt
+    source_type = "CIDR_BLOCK"
+    protocol    = "all"
+
+    description = "Allow all traffic from the VCN CIDR"
+  }
+
   egress_security_rules {
 
     destination      = "0.0.0.0/0"
@@ -143,7 +154,7 @@ resource "oci_core_security_list" "private_tool" {
     source_type = "CIDR_BLOCK"
     protocol    = "all"
 
-    description = "Allow all traffic from the VCN CIDR"
+    description = "Allow all traffic from the MGMT Subnet"
   }
 
   egress_security_rules {
