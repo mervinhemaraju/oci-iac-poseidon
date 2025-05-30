@@ -25,12 +25,6 @@ data "oci_core_subnets" "private_k8" {
   vcn_id         = data.oci_core_vcns.mgmt.virtual_networks[0].id
 }
 
-data "oci_core_subnets" "private_tool" {
-  compartment_id = local.values.compartments.production
-  display_name   = "private-tool"
-  vcn_id         = data.oci_core_vcns.mgmt.virtual_networks[0].id
-}
-
 data "oci_core_subnets" "private_mgmt" {
   compartment_id = local.values.compartments.production
   display_name   = "private-mgmt"

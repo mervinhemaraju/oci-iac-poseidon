@@ -29,7 +29,6 @@ locals {
         private_mgmt = "10.15.10.0/24"
         private_k8   = "10.15.20.0/24"
         public_k8    = "10.15.30.0/24"
-        private_tool = "10.15.40.0/24"
       }
     }
   }

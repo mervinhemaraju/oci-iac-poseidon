@@ -42,20 +42,13 @@ resource "oci_core_security_list" "private_k8" {
 
   ingress_security_rules {
 
-    source      = local.networking.cidr.subnets.private_mgmt
+    # Alows all traffic from the VCN CIDR
+
+    source      = local.networking.cidr.vcn.mgmt
     source_type = "CIDR_BLOCK"
     protocol    = "all"
 
-    description = "Allow all traffic from the MGMT Subnet"
-  }
-
-  ingress_security_rules {
-
-    source      = local.networking.cidr.subnets.private_k8
-    source_type = "CIDR_BLOCK"
-    protocol    = "all"
-
-    description = "Allow all traffic from the private-k8 subnet"
+    description = "Allow all traffic from the VCN CIDR"
   }
 
   egress_security_rules {
@@ -118,6 +111,19 @@ resource "oci_core_security_list" "public_k8" {
   }
 
   ingress_security_rules {
+    # Allows port 8080 traffic from the internet
+
+    source      = "0.0.0.0/0"
+    source_type = "CIDR_BLOCK"
+    protocol    = 6 # TCP
+
+    tcp_options {
+      min = 8080
+      max = 8080
+    }
+  }
+
+  ingress_security_rules {
 
     # Alows all traffic from the VCN CIDR
 
@@ -126,35 +132,6 @@ resource "oci_core_security_list" "public_k8" {
     protocol    = "all"
 
     description = "Allow all traffic from the VCN CIDR"
-  }
-
-  egress_security_rules {
-
-    destination      = "0.0.0.0/0"
-    destination_type = "CIDR_BLOCK"
-    protocol         = "all"
-
-    description = "Allow all outbound traffic to the internet."
-
-  }
-
-  freeform_tags = local.tags.defaults
-}
-
-resource "oci_core_security_list" "private_tool" {
-
-  compartment_id = local.values.compartments.production
-  vcn_id         = oci_core_vcn.mgmt.id
-
-  display_name = "private-tool-sl"
-
-  ingress_security_rules {
-
-    source      = local.networking.cidr.subnets.private_mgmt
-    source_type = "CIDR_BLOCK"
-    protocol    = "all"
-
-    description = "Allow all traffic from the MGMT Subnet"
   }
 
   egress_security_rules {

@@ -44,29 +44,6 @@ resource "oci_core_subnet" "private_k8" {
   ]
 }
 
-
-# Create a private subnet for the tool resources
-resource "oci_core_subnet" "private_tool" {
-
-  compartment_id = local.values.compartments.production
-
-  cidr_block = local.networking.cidr.subnets.private_tool
-  vcn_id     = oci_core_vcn.mgmt.id
-
-  display_name               = "private-tool"
-  dns_label                  = "privatetool"
-  prohibit_public_ip_on_vnic = true
-  security_list_ids          = [oci_core_security_list.private_tool.id]
-
-  route_table_id = oci_core_route_table.private_tool.id
-
-  freeform_tags = local.tags.defaults
-
-  depends_on = [
-    oci_core_vcn.mgmt
-  ]
-}
-
 # Create a private subnet for the mgmt resources
 resource "oci_core_subnet" "private_mgmt" {
 
