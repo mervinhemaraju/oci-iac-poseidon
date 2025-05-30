@@ -16,7 +16,6 @@ locals {
 
     compartments = {
       production = data.doppler_secrets.prod_main.map.OCI_POSEIDON_COMPARTMENT_PRODUCTION_ID
-      as         = ""
     }
 
 
@@ -33,23 +32,8 @@ locals {
 
     compute = {
 
-      name = {
-        control_plane = "control-plane"
-      }
-
       shape          = "VM.Standard.A1.Flex"
-      image          = "ocid1.image.oc1.uk-london-1.aaaaaaaaskspfz56rlcmtfbr2milotcxqcpitly63zipmn4joygm44qs7hua"
       image_oke_node = "ocid1.image.oc1.uk-london-1.aaaaaaaaovf2cgp52xj5asm4ocj4pt3vwzx477auu34glzzwofsez7i37jtq"
-
-      k8_nodes = {
-        automation_server = {
-          name       = "automation-server"
-          ip_address = "10.15.40.10"
-          memory     = 6
-          ocpus      = 2
-          storage    = 50
-        }
-      }
 
       plugins_config = [
         {
