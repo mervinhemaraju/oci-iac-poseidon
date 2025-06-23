@@ -1,6 +1,6 @@
 resource "oci_kms_vault" "apps" {
   compartment_id = local.values.compartments.production
-  display_name   = "vault/apps"
+  display_name   = "apps"
   vault_type     = "DEFAULT"
 
   freeform_tags = local.tags.defaults
@@ -9,7 +9,7 @@ resource "oci_kms_vault" "apps" {
 # Create Master Encryption Key in the Vault
 resource "oci_kms_key" "apps" {
   compartment_id = local.values.compartments.production
-  display_name   = "kms/apps"
+  display_name   = "apps"
 
   key_shape {
     algorithm = "AES"
