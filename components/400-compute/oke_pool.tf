@@ -59,7 +59,7 @@ resource "oci_containerengine_node_pool" "apps" {
   node_source_details {
     image_id                = local.values.compute.image_oke_node
     source_type             = "IMAGE"
-    boot_volume_size_in_gbs = 90
+    boot_volume_size_in_gbs = 75
   }
 
   freeform_tags = local.tags.defaults
