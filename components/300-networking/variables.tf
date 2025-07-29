@@ -4,7 +4,7 @@ variable "region" {
   default     = "uk-london-1"
 }
 
-variable "token_doppler_iac_cloud_main" {
+variable "token_doppler_global" {
   type        = string
   description = "The Doppler token for the secrets manager cloud main repo."
 }
