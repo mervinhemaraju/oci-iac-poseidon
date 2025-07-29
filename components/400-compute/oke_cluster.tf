@@ -1,7 +1,7 @@
 resource "oci_containerengine_cluster" "apps" {
   #Required
   compartment_id     = local.values.compartments.production
-  kubernetes_version = "v1.33.0"
+  kubernetes_version = "v1.33.1"
   name               = "applications"
   type               = "BASIC_CLUSTER"
   vcn_id             = data.oci_core_vcns.mgmt.virtual_networks[0].id
@@ -18,17 +18,6 @@ resource "oci_containerengine_cluster" "apps" {
     # nsg_ids              = var.cluster_endpoint_config_nsg_ids
     subnet_id = data.oci_core_subnets.public_k8.subnets[0].id
   }
-
-  #   image_policy_config {
-
-  #     #Optional
-  #     is_policy_enabled = var.cluster_image_policy_config_is_policy_enabled
-  #     key_details {
-
-  #       #Optional
-  #       kms_key_id = oci_kms_key.test_key.id
-  #     }
-  #   }
 
 
   options {

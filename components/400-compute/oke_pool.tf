@@ -3,7 +3,7 @@ resource "oci_containerengine_node_pool" "apps" {
   compartment_id     = local.values.compartments.production
   name               = "apps-node-pool"
   node_shape         = local.values.compute.shape
-  kubernetes_version = "v1.32.1"
+  kubernetes_version = "v1.33.1"
   ssh_public_key     = data.doppler_secrets.prod_main.map.OCI_POSEIDON_COMPUTE_KEY_PUBLIC
   #   subnet_ids          = var.node_pool_subnet_ids
 
@@ -36,20 +36,20 @@ resource "oci_containerengine_node_pool" "apps" {
     freeform_tags = local.tags.defaults
   }
 
-  #   node_eviction_node_pool_settings {
+  node_eviction_node_pool_settings {
+    eviction_grace_duration              = "PT60M" # 1 hour grace period
+    is_force_delete_after_grace_duration = true
+  }
 
-  #     #Optional
-  #     eviction_grace_duration              = var.node_pool_node_eviction_node_pool_settings_eviction_grace_duration
-  #     is_force_delete_after_grace_duration = var.node_pool_node_eviction_node_pool_settings_is_force_delete_after_grace_duration
-  #   }
+  node_pool_cycling_details {
+    is_node_cycling_enabled = true
 
-  #   node_pool_cycling_details {
+    # Maximum surge during cycling - set to 0 to prevent exceeding 2 instances
+    maximum_surge = "0"
 
-  #     #Optional
-  #     is_node_cycling_enabled = var.node_pool_node_pool_cycling_details_is_node_cycling_enabled
-  #     maximum_surge           = var.node_pool_node_pool_cycling_details_maximum_surge
-  #     maximum_unavailable     = var.node_pool_node_pool_cycling_details_maximum_unavailable
-  #   }
+    # Maximum unavailable during cycling - set to 1 to ensure at least 1 instance remains
+    maximum_unavailable = "1"
+  }
 
   node_shape_config {
     memory_in_gbs = 12
