@@ -1,6 +1,6 @@
 resource "oci_objectstorage_bucket" "resources" {
   compartment_id = local.values.compartments.production
-  name           = "certificates"
+  name           = "resources"
   namespace      = data.oci_objectstorage_namespace.this.namespace
 
   storage_tier = "Standard"
