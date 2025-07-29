@@ -33,7 +33,7 @@ locals {
     compute = {
 
       shape          = "VM.Standard.A1.Flex"
-      image_oke_node = "ocid1.image.oc1.uk-london-1.aaaaaaaanozv6trx6e45n7eb63zbkmlgwz3pmulinjni6lnvlq6kpbcks4aq"
+      image_oke_node = "ocid1.image.oc1.uk-london-1.aaaaaaaa656st3mmhvhimtpe3n6xehhqc3a24tmwm3vcuuquopcjino3nnxq"
 
       plugins_config = [
         {
