@@ -37,7 +37,7 @@ resource "oci_containerengine_node_pool" "apps" {
   }
 
   node_eviction_node_pool_settings {
-    eviction_grace_duration              = "PT60M" # 1 hour grace period
+    eviction_grace_duration              = "PT1H" # 1 hour grace period
     is_force_delete_after_grace_duration = true
   }
 
