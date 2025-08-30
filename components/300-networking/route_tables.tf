@@ -37,6 +37,16 @@ resource "oci_core_route_table" "private_k8" {
     destination_type = "CIDR_BLOCK"
   }
 
+  # Route to the DRG gateway for OCI GAIA connection
+  route_rules {
+
+    network_entity_id = oci_core_drg.k8.id
+
+    description      = "Route to the GAIA database tenant's VCN (VCN Peering to GAIA Account)"
+    destination      = local.networking.cidr.subnets.private_db_gaia
+    destination_type = "CIDR_BLOCK"
+  }
+
   freeform_tags = local.tags.defaults
 }
 
@@ -45,19 +55,6 @@ resource "oci_core_route_table" "private_mgmt" {
   vcn_id         = oci_core_vcn.mgmt.id
 
   display_name = "route-table-private-mgmt"
-
-
-  # dynamic "route_rules" {
-  #   for_each = data.oci_core_private_ips.tool_nodes.private_ips
-  #   content {
-
-  #     network_entity_id = route_rules.value["id"]
-
-  #     description      = "Route to tool computes ${route_rules.value["display_name"]}"
-  #     destination      = format("%s/32", route_rules.value["ip_address"])
-  #     destination_type = "CIDR_BLOCK"
-  #   }
-  # }
 
   freeform_tags = local.tags.defaults
 }

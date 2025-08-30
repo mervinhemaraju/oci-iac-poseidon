@@ -40,9 +40,10 @@ resource "oci_core_security_list" "private_k8" {
 
   display_name = "private-k8-sl"
 
-  ingress_security_rules {
 
-    # Alows all traffic from the VCN CIDR
+
+  # Alows all ingress traffic from the VCN CIDR
+  ingress_security_rules {
 
     source      = local.networking.cidr.vcn.mgmt
     source_type = "CIDR_BLOCK"
@@ -51,6 +52,17 @@ resource "oci_core_security_list" "private_k8" {
     description = "Allow all traffic from the VCN CIDR"
   }
 
+
+  # Allows all ingress traffic from the private db GAIA subnet
+  ingress_security_rules {
+    source      = local.networking.cidr.subnets.private_db_gaia
+    source_type = "CIDR_BLOCK"
+    protocol    = "all"
+
+    description = "Allow all traffic from the private-db GAIA subnet."
+  }
+
+  # Allow all egress traffic to the internet
   egress_security_rules {
 
     destination      = "0.0.0.0/0"

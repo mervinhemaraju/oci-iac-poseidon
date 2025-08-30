@@ -17,3 +17,12 @@ resource "oci_core_nat_gateway" "mgmt" {
   display_name  = "mgmt-ng"
   freeform_tags = local.tags.defaults
 }
+
+# Create a Dynamic Routing Gateway for VCN peering
+resource "oci_core_drg" "k8" {
+  compartment_id = local.values.compartments.production
+
+  display_name = "k8-drg"
+
+  freeform_tags = local.tags.defaults
+}
