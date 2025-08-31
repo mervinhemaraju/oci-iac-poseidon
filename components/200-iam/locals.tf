@@ -29,6 +29,13 @@ locals {
       dynamic = {
         instance_principal = "instance-principal-group"
       }
+
+      gaia_groups = {
+        drg_admins = {
+          name = "drg-admins"
+          id   = jsondecode(data.doppler_secrets.oci_creds.map.OCI_GAIA_GROUPS)["drg-admins"]
+        }
+      }
     }
   }
 
