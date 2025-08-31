@@ -12,6 +12,10 @@ locals {
     }
   }
 
+  secrets = {
+    oci = "cloud-oci-creds"
+  }
+
   values = {
     compartments = {
       production = data.doppler_secrets.oci_creds.map.OCI_POSEIDON_COMPARTMENT_PRODUCTION_ID
