@@ -1,6 +1,6 @@
 # Create a vault for uptimekuma application secrets
 module "vault_uptimekuma_application" {
-  source = "module/vault"
+  source = "./modules/vault"
 
   compartment_id = local.values.compartments.production
   vault_name     = "apps-uptimekuma"
