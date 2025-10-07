@@ -26,7 +26,7 @@ resource "oci_kms_key" "this" {
 # Create one secret for each entry in the var.plaintext_secrets map
 resource "oci_vault_secret" "this_plaintext" {
 
-  for_each = var.plaintext_secrets
+  for_each = var.secrets
 
   # Required arguments that are the same for all secrets
   compartment_id = var.compartment_id
@@ -35,14 +35,12 @@ resource "oci_vault_secret" "this_plaintext" {
 
   secret_name = each.key
 
-  description = "Secret for '${each.key}' that is managed by Terraform."
+  description = "Secret (in BASE64) for '${each.key}' that is managed by Terraform."
 
   secret_content {
-    content_type = "PLAINTEXT"
+    content_type = "BASE64"
     content      = each.value
   }
 
-  # Other arguments
-  # enable_auto_generation = false
   freeform_tags = var.tags
 }

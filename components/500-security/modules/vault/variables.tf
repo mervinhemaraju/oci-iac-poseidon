@@ -9,8 +9,8 @@ variable "vault_name" {
   type        = string
 }
 
-variable "plaintext_secrets" {
-  description = "A map of secrets to create. The key will be used as the secret_name and the value will be the secret's content (in plaintext)."
+variable "secrets" {
+  description = "A map of secrets to create. The key will be used as the secret_name and the value will be the secret's content (in BASE64)."
   type        = map(string)
   default     = {}
 }
