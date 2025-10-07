@@ -1,22 +1,28 @@
-resource "oci_kms_vault" "apps" {
-  compartment_id = local.values.compartments.production
-  display_name   = "apps"
-  vault_type     = "DEFAULT"
+# # Create a vault for uptimekuma application secrets
+# module "vault_application_uptimekuma" {
+#   source = "./modules/vault"
 
-  freeform_tags = local.tags.defaults
-}
+#   compartment_id = local.values.compartments.production
+#   vault_name     = "application-uptimekuma"
 
-# Create Master Encryption Key in the Vault
-resource "oci_kms_key" "apps" {
-  compartment_id = local.values.compartments.production
-  display_name   = "apps"
+#   secrets = {
+#     admin_password = base64encode(data.doppler_secrets.apps_creds.map.UPTIMEKUMA_ADMIN_PASSWORD),
+#   }
 
-  key_shape {
-    algorithm = "AES"
-    length    = 32
-  }
+#   tags = local.tags.defaults
+# }
 
-  management_endpoint = oci_kms_vault.apps.management_endpoint
 
-  freeform_tags = local.tags.defaults
-}
+# # Create a vault for cloudflare secrets
+# module "vault_application_cloudflare" {
+#   source = "./modules/vault"
+
+#   compartment_id = local.values.compartments.production
+#   vault_name     = "application-cloudflare"
+
+#   secrets = {
+#     admin_password = base64encode(data.doppler_secrets.apps_creds.map.CLOUDFLARE_TERRAFORM_TOKEN),
+#   }
+
+#   tags = local.tags.defaults
+# }
