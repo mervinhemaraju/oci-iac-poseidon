@@ -43,6 +43,6 @@ resource "oci_vault_secret" "this_plaintext" {
   }
 
   # Other arguments
-  enable_auto_generation = false
-  freeform_tags          = var.tags
+  # enable_auto_generation = false
+  freeform_tags = var.tags
 }
