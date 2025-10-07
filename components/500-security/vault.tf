@@ -1,22 +1,14 @@
-resource "oci_kms_vault" "apps" {
+# Create a vault for uptimekuma application secrets
+module "vault_uptimekuma_application" {
+  source = "module/vault"
+
   compartment_id = local.values.compartments.production
-  display_name   = "apps"
-  vault_type     = "DEFAULT"
+  vault_name     = "apps-uptimekuma"
 
-  freeform_tags = local.tags.defaults
-}
-
-# Create Master Encryption Key in the Vault
-resource "oci_kms_key" "apps" {
-  compartment_id = local.values.compartments.production
-  display_name   = "apps"
-
-  key_shape {
-    algorithm = "AES"
-    length    = 32
+  plaintext_secrets = {
+    token        = "xxxx",
+    anothertoken = "yyyy"
   }
 
-  management_endpoint = oci_kms_vault.apps.management_endpoint
-
-  freeform_tags = local.tags.defaults
+  tags = local.tags.defaults
 }
