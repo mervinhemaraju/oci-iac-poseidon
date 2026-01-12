@@ -34,6 +34,7 @@ locals {
         private_k8      = "10.15.20.0/24"
         public_k8       = "10.15.30.0/24"
         private_db_gaia = "10.18.20.0/24" # (This is found in the GAIA account)
+        private_k8_zeus = "10.17.31.0/24" # (This is found in the ZEUS account)
       }
     }
   }

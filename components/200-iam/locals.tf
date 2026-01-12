@@ -22,6 +22,7 @@ locals {
       root       = data.doppler_secrets.oci_creds.map.OCI_POSEIDON_COMPARTMENT_ROOT_ID
 
       root_gaia = data.doppler_secrets.oci_creds.map.OCI_GAIA_COMPARTMENT_ROOT_ID
+      root_zeus = data.doppler_secrets.oci_creds.map.OCI_ZEUS_COMPARTMENT_ROOT_ID
     }
 
     groups = {
@@ -36,6 +37,13 @@ locals {
         drg_admins = {
           name = "drg-admins"
           id   = jsondecode(data.doppler_secrets.oci_creds.map.OCI_GAIA_GROUPS)["drg-admins"]
+        }
+      }
+
+      zeus_groups = {
+        drg_admins = {
+          name = "drg-admins"
+          id   = jsondecode(data.doppler_secrets.oci_creds.map.OCI_ZEUS_GROUPS)["drg-admins"]
         }
       }
     }
