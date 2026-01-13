@@ -63,13 +63,23 @@ resource "oci_core_security_list" "private_k8" {
   }
 
 
-  # Allows all ingress traffic from the private db ZEUS subnet
+  # Allows all ingress traffic from the private k8 ZEUS subnet
   ingress_security_rules {
     source      = local.networking.cidr.subnets.private_k8_zeus
     source_type = "CIDR_BLOCK"
     protocol    = "all"
 
     description = "Allow all traffic from the private-k8 ZEUS subnet."
+  }
+
+
+  # Allows all ingress traffic from the private k8 api ZEUS subnet
+  ingress_security_rules {
+    source      = local.networking.cidr.subnets.private_k8_api_zeus
+    source_type = "CIDR_BLOCK"
+    protocol    = "all"
+
+    description = "Allow all traffic from the private-k8-api ZEUS subnet."
   }
 
   # Allow all egress traffic to the internet
