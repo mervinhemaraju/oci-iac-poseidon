@@ -7,7 +7,7 @@ resource "doppler_secret" "k8_connection_details" {
   value = jsonencode(
     {
       "drg" : {
-        "id" : oci_core_drg.k8.id
+        "id" : oci_core_drg.mgmt.id
       },
       "rpc" : {
         "gaia_database_id" : oci_core_remote_peering_connection.gaia_database.id,

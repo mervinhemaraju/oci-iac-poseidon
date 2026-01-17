@@ -40,7 +40,7 @@ resource "oci_core_route_table" "private_k8" {
   # Route to the DRG gateway for OCI GAIA connection
   route_rules {
 
-    network_entity_id = oci_core_drg.k8.id
+    network_entity_id = oci_core_drg.mgmt.id
 
     description      = "Route to the GAIA database tenant's VCN (VCN Peering to GAIA Account)"
     destination      = local.networking.cidr.subnets.private_db_gaia
@@ -50,7 +50,7 @@ resource "oci_core_route_table" "private_k8" {
   # Route to the DRG gateway for OCI ZEUS private k8 connection
   route_rules {
 
-    network_entity_id = oci_core_drg.k8.id
+    network_entity_id = oci_core_drg.mgmt.id
 
     description      = "Route to the ZEUS private k8 tenant's VCN (VCN Peering to ZEUS Account)"
     destination      = local.networking.cidr.subnets.private_k8_zeus
@@ -60,7 +60,7 @@ resource "oci_core_route_table" "private_k8" {
   # Route to the DRG gateway for OCI ZEUS private k8 api connection
   route_rules {
 
-    network_entity_id = oci_core_drg.k8.id
+    network_entity_id = oci_core_drg.mgmt.id
 
     description      = "Route to the ZEUS private k8 api tenant's VCN (VCN Peering to ZEUS Account)"
     destination      = local.networking.cidr.subnets.private_k8_api_zeus
