@@ -19,10 +19,10 @@ resource "oci_core_nat_gateway" "mgmt" {
 }
 
 # Create a Dynamic Routing Gateway for VCN peering
-resource "oci_core_drg" "k8" {
+resource "oci_core_drg" "mgmt" {
   compartment_id = local.values.compartments.production
 
-  display_name = "k8-drg"
+  display_name = "mgmt-drg"
 
   freeform_tags = local.tags.defaults
 }

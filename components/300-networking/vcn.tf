@@ -15,11 +15,11 @@ resource "oci_core_vcn" "mgmt" {
 }
 
 # > The DRG attachment
-resource "oci_core_drg_attachment" "k8" {
+resource "oci_core_drg_attachment" "mgmt_vcn" {
 
-  drg_id = oci_core_drg.k8.id
+  drg_id = oci_core_drg.mgmt.id
 
-  display_name = "k8-drg-attachment"
+  display_name = "mgmt-vcn-drg-attachment"
 
   freeform_tags = local.tags.defaults
 
