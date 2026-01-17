@@ -22,6 +22,28 @@ resource "oci_core_subnet" "public_k8" {
   ]
 }
 
+# Create a private subnet for the kubernetes api
+resource "oci_core_subnet" "private_k8_api" {
+
+  compartment_id = local.values.compartments.production
+
+  cidr_block = local.networking.cidr.subnets.private_k8_api
+  vcn_id     = oci_core_vcn.mgmt.id
+
+  display_name               = "private-k8-api"
+  dns_label                  = "privatek8api"
+  prohibit_public_ip_on_vnic = true
+  security_list_ids          = [oci_core_security_list.private_k8.id]
+
+  route_table_id = oci_core_route_table.private_k8.id
+
+  freeform_tags = local.tags.defaults
+
+  depends_on = [
+    oci_core_vcn.mgmt
+  ]
+}
+
 # Create a private subnet for the kubernetes cluster
 resource "oci_core_subnet" "private_k8" {
 
