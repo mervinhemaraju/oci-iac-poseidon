@@ -45,6 +45,6 @@ data "oci_containerengine_node_pool_option" "arm_oke_ol" {
 
   # Filter for specific requirements
   node_pool_k8s_version = "v1.34.1"
-  node_pool_os_arch     = "ARM"
+  node_pool_os_arch     = "AARCH64"
   node_pool_os_type     = "OL8"
 }
