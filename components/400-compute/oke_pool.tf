@@ -54,7 +54,7 @@ resource "oci_containerengine_node_pool" "default_pool" {
   }
 
   node_source_details {
-    image_id                = local.values.compute.image_oke_node
+    image_id                = data.oci_containerengine_node_pool_option.arm_oke_ol.sources[0].image_id
     source_type             = "IMAGE"
     boot_volume_size_in_gbs = 50
   }

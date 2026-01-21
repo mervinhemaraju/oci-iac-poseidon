@@ -32,8 +32,7 @@ locals {
 
     compute = {
 
-      shape          = "VM.Standard.A1.Flex"
-      image_oke_node = data.oci_containerengine_node_pool_option.arm_oke_ol.sources[0].image_id
+      shape = "VM.Standard.A1.Flex"
 
       plugins_config = [
         {
