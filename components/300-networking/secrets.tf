@@ -11,7 +11,8 @@ resource "doppler_secret" "k8_connection_details" {
       },
       "rpc" : {
         "gaia_database_id" : oci_core_remote_peering_connection.gaia_database.id,
-        "zeus_prod_id" : oci_core_remote_peering_connection.zeus_prod.id
+        "zeus_prod_id" : oci_core_remote_peering_connection.zeus_prod.id,
+        "helios_dev_id" : oci_core_remote_peering_connection.helios_dev.id
       }
     }
   )

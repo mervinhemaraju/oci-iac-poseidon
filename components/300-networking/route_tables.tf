@@ -1,5 +1,4 @@
 # Route Tables
-
 resource "oci_core_route_table" "public_k8" {
 
   compartment_id = local.values.compartments.production
@@ -64,6 +63,26 @@ resource "oci_core_route_table" "private_k8" {
 
     description      = "Route to the ZEUS private k8 api tenant's VCN (VCN Peering to ZEUS Account)"
     destination      = local.networking.cidr.subnets.private_k8_api_zeus
+    destination_type = "CIDR_BLOCK"
+  }
+
+  # Route to the DRG gateway for OCI HELIOS private k8 connection
+  route_rules {
+
+    network_entity_id = oci_core_drg.mgmt.id
+
+    description      = "Route to the HELIOS private k8 tenant's VCN (VCN Peering to HELIOS Account)"
+    destination      = local.networking.cidr.subnets.private_k8_helios
+    destination_type = "CIDR_BLOCK"
+  }
+
+  # Route to the DRG gateway for OCI HELIOS private k8 api connection
+  route_rules {
+
+    network_entity_id = oci_core_drg.mgmt.id
+
+    description      = "Route to the HELIOS private k8 api tenant's VCN (VCN Peering to HELIOS Account)"
+    destination      = local.networking.cidr.subnets.private_k8_api_helios
     destination_type = "CIDR_BLOCK"
   }
 

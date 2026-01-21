@@ -62,7 +62,6 @@ resource "oci_core_security_list" "private_k8" {
     description = "Allow all traffic from the private-db GAIA subnet."
   }
 
-
   # Allows all ingress traffic from the private k8 ZEUS subnet
   ingress_security_rules {
     source      = local.networking.cidr.subnets.private_k8_zeus
@@ -80,6 +79,25 @@ resource "oci_core_security_list" "private_k8" {
     protocol    = "all"
 
     description = "Allow all traffic from the private-k8-api ZEUS subnet."
+  }
+
+  # Allows all ingress traffic from the private k8 HELIOS subnet
+  ingress_security_rules {
+    source      = local.networking.cidr.subnets.private_k8_helios
+    source_type = "CIDR_BLOCK"
+    protocol    = "all"
+
+    description = "Allow all traffic from the private-k8 HELIOS subnet."
+  }
+
+
+  # Allows all ingress traffic from the private k8 api HELIOS subnet
+  ingress_security_rules {
+    source      = local.networking.cidr.subnets.private_k8_api_helios
+    source_type = "CIDR_BLOCK"
+    protocol    = "all"
+
+    description = "Allow all traffic from the private-k8-api HELIOS subnet."
   }
 
   # Allow all egress traffic to the internet

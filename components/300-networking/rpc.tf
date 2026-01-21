@@ -19,3 +19,14 @@ resource "oci_core_remote_peering_connection" "zeus_prod" {
 
   freeform_tags = local.tags.defaults
 }
+
+# Add RPC for HELIOS connection
+resource "oci_core_remote_peering_connection" "helios_dev" {
+  compartment_id = local.values.compartments.production
+  drg_id         = oci_core_drg.mgmt.id
+
+  display_name     = "rpc-helios-dev"
+  peer_region_name = "af-johannesburg-1" # HELIOS region
+
+  freeform_tags = local.tags.defaults
+}
