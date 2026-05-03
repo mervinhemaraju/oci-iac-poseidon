@@ -4,10 +4,16 @@
 terraform {
 
   # The required tf version
-  required_version = "1.8.7"
+  required_version = ">= 1.10.0"
 
   # Required providers
   required_providers {
+
+    # TLS provider
+    tls = {
+      source  = "hashicorp/tls"
+      version = "~> 4.0"
+    }
 
     # Doppler provider
     doppler = {
