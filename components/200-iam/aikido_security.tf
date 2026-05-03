@@ -17,7 +17,7 @@ resource "oci_identity_user" "aikido_security" {
 
 # Create a new api key for aikido security
 resource "oci_identity_api_key" "aikido_security_key" {
-  user_id = oci_identity_user.aikido_security.id
+  user_id   = oci_identity_user.aikido_security.id
   key_value = tls_private_key.aikido_security.public_key_pem
 }
 
@@ -82,9 +82,9 @@ resource "oci_kms_key" "aikido_security" {
 resource "oci_vault_secret" "this_plaintext" {
 
   for_each = {
-    "aikido-security-private-key" = tls_private_key.aikido_security.private_key_pem,
-    "aikido-security-public-key" = tls_private_key.aikido_security.public_key_pem,
-    "aikido-security-api-key" = oci_identity_api_key.aikido_security_key.key_value,
+    "aikido-security-private-key"         = tls_private_key.aikido_security.private_key_pem,
+    "aikido-security-public-key"          = tls_private_key.aikido_security.public_key_pem,
+    "aikido-security-api-key"             = oci_identity_api_key.aikido_security_key.key_value,
     "aikido-security-api-key-fingerprint" = oci_identity_api_key.aikido_security_key.fingerprint,
   }
 
