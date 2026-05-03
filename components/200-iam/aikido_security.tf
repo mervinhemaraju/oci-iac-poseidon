@@ -1,6 +1,6 @@
 
 # Create a public and private key for aikido security
-ephemeral "tls_private_key" "aikido_security" {
+resource "tls_private_key" "aikido_security" {
   algorithm = "RSA"
   rsa_bits  = 2048
 }
@@ -19,7 +19,7 @@ resource "oci_identity_user" "aikido_security" {
 # Create a new api key for aikido security
 resource "oci_identity_api_key" "aikido_security_key" {
   user_id   = oci_identity_user.aikido_security.id
-  key_value = ephemeral.tls_private_key.aikido_security.public_key_pem
+  key_value = tls_private_key.aikido_security.public_key_pem
 }
 
 # Creates a new user group for aikido security
@@ -80,12 +80,12 @@ resource "oci_kms_key" "aikido_security" {
 }
 
 # Create one secret for each entry
-resource "oci_vault_secret" "this_plaintext" {
+resource "oci_vault_secret" "aikido_security_secrets" {
 
   for_each = {
-    "aikido-security-private-key"         = ephemeral.tls_private_key.aikido_security.private_key_pem,
-    "aikido-security-public-key"          = ephemeral.tls_private_key.aikido_security.public_key_pem,
-    "aikido-security-api-key"             = ephemeral.tls_private_key.aikido_security.public_key_pem,
+    "aikido-security-private-key"         = tls_private_key.aikido_security.private_key_pem,
+    "aikido-security-public-key"          = tls_private_key.aikido_security.public_key_pem,
+    "aikido-security-api-key"             = tls_private_key.aikido_security.public_key_pem,
     "aikido-security-api-key-fingerprint" = oci_identity_api_key.aikido_security_key.fingerprint,
   }
 
@@ -103,4 +103,9 @@ resource "oci_vault_secret" "this_plaintext" {
   }
 
   freeform_tags = local.tags.defaults
+
+  # OCI does not return secret content via API, so ignore drift on this attribute
+  lifecycle {
+    ignore_changes = [secret_content]
+  }
 }
