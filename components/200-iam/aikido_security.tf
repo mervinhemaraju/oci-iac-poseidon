@@ -25,7 +25,7 @@ resource "oci_identity_api_key" "aikido_security_key" {
 resource "oci_identity_group" "aikido_security" {
 
   compartment_id = local.values.compartments.root
-  name           = local.values.groups.aikido_security
+  name           = "aikido-security"
   description    = "Aikido Security group."
 
   freeform_tags = local.tags.defaults
