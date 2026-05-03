@@ -10,6 +10,7 @@ resource "oci_identity_user" "aikido_security" {
 
   compartment_id = local.values.compartments.root
   name           = "aikido-security"
+  email          = "mervinhemaraju16@gmail.com"
   description    = "Aikido Security user."
 
   freeform_tags = local.tags.defaults
