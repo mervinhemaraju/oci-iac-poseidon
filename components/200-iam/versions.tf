@@ -4,7 +4,7 @@
 terraform {
 
   # The required tf version
-  required_version = "1.8.7"
+  required_version = "~> 1.11"
 
   # Required providers
   required_providers {
