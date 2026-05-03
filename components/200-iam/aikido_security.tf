@@ -83,10 +83,10 @@ resource "oci_kms_key" "aikido_security" {
 resource "oci_vault_secret" "aikido_security_secrets" {
 
   for_each = {
-    "aikido-security-private-key"         = tls_private_key.aikido_security.private_key_pem,
-    "aikido-security-public-key"          = tls_private_key.aikido_security.public_key_pem,
-    "aikido-security-api-key"             = tls_private_key.aikido_security.public_key_pem,
-    "aikido-security-api-key-fingerprint" = oci_identity_api_key.aikido_security_key.fingerprint,
+    "aikido-security-private-key"         = base64encode(tls_private_key.aikido_security.private_key_pem),
+    "aikido-security-public-key"          = base64encode(tls_private_key.aikido_security.public_key_pem),
+    "aikido-security-api-key"             = base64encode(tls_private_key.aikido_security.public_key_pem),
+    "aikido-security-api-key-fingerprint" = base64encode(oci_identity_api_key.aikido_security_key.fingerprint),
   }
 
   compartment_id = local.values.compartments.production
